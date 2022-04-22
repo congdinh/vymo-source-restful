@@ -56,9 +56,9 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+!.env
 .env.development
-.env.production
+!.env.production
 !.env.example
 
 # next.js build output
@@ -81,4 +81,4 @@ typings/
 parser
 
 # Cache
-.cache
+!.cache
