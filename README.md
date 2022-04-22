@@ -10,6 +10,26 @@
 - Running app bundle via server.
 - Endpoint: `http://localhost:9000`
 
+### Structure app
+
+- app: Frontend folder
+   - build: React build folder
+   - public: Template html
+   - src: React source
+- dist: Backend build folder
+- logs: Logging files
+- pm2: Config service runtime
+- src: Backend source code
+   - configs: Config app
+   - controllers: Control user logic
+   - datasources: Handle model and caching data
+   - external-libs: Create connect to many librarys
+   - routers: Handle routing
+   - utils: Helper functions
+   - index.js: Application startup
+- .env* : Environment files
+
+
 ## Development setup
 
 ### Backend Built With

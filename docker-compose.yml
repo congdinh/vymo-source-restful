@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  vymo-mongo:
+    image: mongo
+    container_name: vymo-mongo
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+
+  vymo-redis:
+    image: redis:6-alpine
+    container_name: vymo-redis
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    volumes:
+      - mongo-redis:/data
+
+  vymo-restful:
+    build:
+      context: .
+    image: vymo/vymo-restful:latest
+    container_name: vymo-restful
+    ports:
+      - $PORT:$PORT
+    env_file:
+      - ./.env
+    command: /bin/sh -c "pm2-runtime start pm2/start.yml"
+    links:
+      - vymo-mongo
+      - vymo-redis
+    depends_on:
+      - vymo-mongo
+      - vymo-redis
+
+volumes:
+  mongo-redis:
+  mongo-data:
